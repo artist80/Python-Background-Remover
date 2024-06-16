@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Remover</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Background Remover</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" id="file">
+            <input type="submit" value="Remove BG">
+        </form>
+        {% if success %}
+            <img src="{{ url_for('static', filename='no_bg_' + filename) }}" alt="Removed BG">
+            <br>
+            <a href="/download?filename={{ filename }}">Download Image</a>
+        {% endif %}
+    </main>
+    <footer>
+        <p>Powered by <a href="https://www.compcit.com">compcit.com</a></p>
+    </footer>
+</body>
+</html>
